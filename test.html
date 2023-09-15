@@ -1,0 +1,28 @@
+<div id="demo"></div>
+<script src="xvideos1023.js"></script>
+<script>
+function getUrlVar() {
+	var result = {};
+	var location = window.location.href.split('#');
+	var parts = location[0].replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) { result [key] = value; });
+	return result;
+}
+var p = getUrlVar()["p"];
+var page = getUrlVar()["page"];
+if (p >= 1){ var page = page; }else{ var page = 1; }
+var total = data.length;
+var size = 5;
+var start = size*(page-1);
+var end = size*page;
+var last =  Math.ceil(total/size);
+var x = (page*1-1)*(size*1+1);
+let text = '<h3>page: '+page+' of: '+last+' | '+total+' files</h3><a href="?p=1&page='+(page*1+1)+'">NEXT &raquo;</a>';
+for (let i = start; i < total && i < end; i++) {
+	var title = data[i].title
+	var image = data[i].image
+	var embed = data[i].embed
+	text += '<div><a target="_blank" href="'+embed+'"><img src="'+image+'" alt="'+title+'"></a><br>'+title+x+'</div>';
+}
+text += '<a href="?p=1&page='+(page*1+1)+'">NEXT &raquo;</a>';
+document.getElementById("demo").innerHTML = text;
+</script>
